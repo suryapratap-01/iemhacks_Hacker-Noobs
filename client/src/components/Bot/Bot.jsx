@@ -5,7 +5,19 @@ import axios from 'axios';
 function Bot() {
   const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState([]);
+  const [fetchedMessages, setFetchedMessages] = useState([]);
 
+  useEffect(() => {
+    axios.get('http://localhost:5000/get-messages')
+      .then(response => {
+        setFetchedMessages(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching messages:', error);
+      });
+  }, []);
+
+  
   const sendMessage = async () => {
     if (userInput.trim() === '') {
       return;
@@ -47,16 +59,16 @@ function Bot() {
             Send
           </button>
         </div>
-        {messages.length > 0 && (
+        {fetchedMessages.length > 0 && (
           <div className="messages">
-            {messages.slice().reverse().map((message, index) => (
+            {fetchedMessages.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
                 {message.content}
               </div>
             ))}
           </div>
-          
         )}
+        
       </div>
     </div>
   );

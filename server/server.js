@@ -3,15 +3,34 @@ import bodyParser from 'body-parser';
 import { config } from 'dotenv';
 import OpenAIApi from 'openai';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 config();
-
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
+mongoose.connect(process.env.MONGOAUTH, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB Atlas');
+});
+
+const messageSchema = new mongoose.Schema({
+  type: String,
+  content: String,
+});
+
+const Message = mongoose.model('Message', messageSchema);
+
 
 const openAi = new OpenAIApi({
     apiKey: process.env.OPENAI_API_KEY,
@@ -35,10 +54,6 @@ app.get('/', (req, res) => {
   res.send('Server is ONN');
 });
 
-app.get('/generate-response', (req, res) => {
-  res.send('Server is ONN');
-});
-
 app.post('/generate-response', async (req, res) => {
   let inputText = req.body.inputText;
  
@@ -46,6 +61,20 @@ app.post('/generate-response', async (req, res) => {
 
   try {
     const openaiResponse = await generateResponseFromOpenAI(inputText);
+
+    const userMessage = new Message({
+      type: 'user',
+      content: req.body.inputText,
+    });
+    await userMessage.save();
+
+    const botMessage = new Message({
+      type: 'bot',
+      content: openaiResponse,
+    });
+    await botMessage.save();
+
+
     res.json({ response: openaiResponse });
   } catch (error) {
     console.error('Error generating response:', error.message);
@@ -54,6 +83,17 @@ app.post('/generate-response', async (req, res) => {
       .json({ error: 'An error occurred while generating the response.' });
   }
 });
+
+app.get('/get-messages', async (req, res) => {
+  try {
+    const messages = await Message.find();
+    res.json(messages);
+  } catch (error) {
+    console.error('Error fetching messages:', error.message);
+    res.status(500).json({ error: 'An error occurred while fetching messages.' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
