@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import { config } from 'dotenv';
 import OpenAIApi from 'openai';
 import cors from 'cors';
-import { log } from 'console';
 
 config();
 
