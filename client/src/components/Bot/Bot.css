@@ -35,9 +35,10 @@
     width: 80%; /* Adjust to your needs */
     margin: 0 auto;
     padding: 20px;
+    
   }
   
-  h1 {
+  .bot-container h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #ffffff;
