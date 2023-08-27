@@ -1,5 +1,4 @@
 .Navbar_items{
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,11 +9,6 @@
     height: 80px;
     position: relative;
     z-index: 1;
-    border-radius: 13px;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translate(-50%);
 }
 
 .Navbar_heading{
