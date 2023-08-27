@@ -7,8 +7,6 @@ import mongoose from 'mongoose';
 
 import AbortController from 'abort-controller';
 
-const { AbortController } = require('abort-controller');
-
 const controller = new AbortController();
 config();
 const app = express();
