@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="copyRightArea">
-                <div className="container">
+                <div className="foot_container">
                     <div className="row">
                         <div className="col-12 text-center">
                             <p> &copy; Copyright {new Date().getFullYear()} All rights reserved.</p>
