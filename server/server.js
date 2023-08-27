@@ -42,6 +42,7 @@ async function generateResponseFromOpenAI(inputText) {
     const response = await openAi.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [{ role: 'system', content: 'You are a legal advisor bot.' }, { role: 'user', content: inputText }],
+        max_tokens: 30,
     });
     return response.choices[0].message.content;
   } catch (error) {
@@ -84,6 +85,16 @@ app.post('/generate-response', async (req, res) => {
   }
 });
 
+app.delete('/delete-messages', async (req, res) => {
+  try {
+    await Message.deleteMany();
+    res.json({ message: 'All messages deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting messages:', error.message);
+    res.status(500).json({ error: 'An error occurred while deleting messages.' });
+  }
+});
+
 app.get('/get-messages', async (req, res) => {
   try {
     const messages = await Message.find();
@@ -93,6 +104,7 @@ app.get('/get-messages', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching messages.' });
   }
 });
+
 
 
 app.listen(port, () => {
