@@ -42,7 +42,7 @@ async function generateResponseFromOpenAI(inputText) {
     const response = await openAi.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [{ role: 'system', content: 'You are a legal advisor bot.' }, { role: 'user', content: inputText }],
-        max_tokens: 30,
+        max_tokens: 1000,
     });
     return response.choices[0].message.content;
   } catch (error) {

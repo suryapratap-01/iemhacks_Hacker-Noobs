@@ -1,19 +1,15 @@
-
 .Navbar_items{
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
-    background-color: #222;
+    background-color: #7397ac;
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-    width: 95%;
+    width: 100%;
     height: 80px;
-    border-radius: 13px;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translate(-50%);
+    position: relative;
+    z-index: 1;
 }
 
 .Navbar_heading{
@@ -21,7 +17,7 @@
     font-size: 32px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 2%;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
@@ -41,7 +37,7 @@
 .Navbar_links{
 
     text-decoration: none;
-    color: white;
+    color: black;
     padding: 0.7rem 1rem;
     white-space: nowrap;
     cursor: pointer;
@@ -53,5 +49,4 @@
     border-radius: 10px;
     transition: all 0.2s ease-in-out 0s;
     color: lightgoldenrodyellow;
-
 }
