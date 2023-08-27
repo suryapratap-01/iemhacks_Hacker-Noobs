@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { config } from 'dotenv';
 import OpenAIApi from 'openai';
 import cors from 'cors';
+import { AbortController } from 'abort-controller';
 import mongoose from 'mongoose';
 
 config();
