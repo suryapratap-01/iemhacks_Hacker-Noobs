@@ -5,16 +5,11 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-
+   
         <nav className="Navbar_items">
             <h1 className="Navbar_heading">Samvidhan.Ai  <FontAwesomeIcon icon={faScaleBalanced} className="Navbar_logo" /></h1>
 
             <ul className="Navbar_menu">
-                <li>
-                    <a href='!#'>
-                        <FontAwesomeIcon icon={faHome} />  Home
-                    </a>
-                </li>
                 <li>
                     <a href='!#'>
                         <FontAwesomeIcon icon={faGavel} />  Legal Laws

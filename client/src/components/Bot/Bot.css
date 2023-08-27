@@ -57,6 +57,8 @@
   width: 80%;
   margin: 0 auto;
   padding: 20px;
+  padding-top: 8%;
+  margin-bottom: 40px;
 }
 
 .bot-container h1 {
@@ -66,15 +68,15 @@
 }
 
 .chat-box {
-  width: 100%;
-  max-width: 800px;
-  background-color: #dab914;
-  border: 1px solid #ccc;
+  width: 80%;
   border-radius: 5px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+@media only screen and (max-width: 788px){
+  .chat-box{
+    width: auto;
+  }
+}
 .messages {
   background: linear-gradient(
     45deg,
@@ -139,7 +141,7 @@
   margin: 3px;
   background-color: #a58165;
   color: #ffffff;
-  border-radius: 5px;
+  border-radius: 20px;
   transition: 0.3s;
 }
 
@@ -168,4 +170,18 @@
 .message_delete_icon:hover {
   color: #ccc;
   transform: scale(1.2);
+}
+@media only screen and (max-width: 900px) {
+  .bot_container {
+    margin-top: 200px;
+  }
+  .national_emblem_image {
+    width: 70px; /* Adjust width for screens with max-width of 1000px */
+  }
+  .bot_send_button{
+    font-size: 1rem;
+  }
+  .bot_input{
+    font-size: 1rem;
+  }
 }
