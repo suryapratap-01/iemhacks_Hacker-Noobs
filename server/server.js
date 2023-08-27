@@ -3,9 +3,11 @@ import bodyParser from 'body-parser';
 import { config } from 'dotenv';
 import OpenAIApi from 'openai';
 import cors from 'cors';
-import { AbortController } from 'abort-controller';
 import mongoose from 'mongoose';
 
+import AbortController from 'abort-controller';
+
+const controller = new AbortController();
 config();
 const app = express();
 const port = process.env.PORT || 5000;
